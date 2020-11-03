@@ -48,7 +48,7 @@ jobs:
             github.checks.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              name: 'nightly-failures',
+              name: 'Build failures on nightly',
               head_sha: context.sha,
               status: 'completed',
               conclusion: 'neutral',
