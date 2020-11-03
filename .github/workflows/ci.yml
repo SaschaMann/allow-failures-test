@@ -39,6 +39,8 @@ jobs:
         uses: actions/github-script@v3
         with:
           script: |
+            console.log(context.runId)
+
             const workflowRun = await github.actions.getWorkflowRun({
               owner: context.repo.owner,
               repo: context.repo.repo,
