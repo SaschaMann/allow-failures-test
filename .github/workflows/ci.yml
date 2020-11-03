@@ -43,7 +43,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               run_id: context.runId,
-            }).data.check_suite_id
+            }).check_suite_id
 
             console.log(checkSuiteId)
 
