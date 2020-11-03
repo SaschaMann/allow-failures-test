@@ -43,7 +43,15 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               run_id: context.runId,
-            })//.check_suite_id
+            }).data.check_suite_id
 
             console.log(checkSuiteId)
+
+            const checkSuite = await github.getSuite({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              check_suite_id: checkSuiteId,
+            })
+
+            console.log(checkSuite)
 
