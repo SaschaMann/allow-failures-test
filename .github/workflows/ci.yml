@@ -39,11 +39,15 @@ jobs:
         uses: actions/github-script@v3
         with:
           script: |
-            const checkSuiteId = await github.actions.getWorkflowRun({
+            const workflowRun = await github.actions.getWorkflowRun({
               owner: context.repo.owner,
               repo: context.repo.repo,
               run_id: context.runId,
-            }).check_suite_id
+            })
+
+            console.log(workflowRun)
+
+            const checkSuiteId = workflowRun.data.check_suite_id
 
             console.log(checkSuiteId)
 
