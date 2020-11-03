@@ -8,6 +8,7 @@ jobs:
   test:
     name: Tests
     runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental }}
     strategy:
       fail-fast: false
       matrix:
@@ -23,16 +24,15 @@ jobs:
       - name: Check that fails during experimental builds
         id: test
         run: ${{ matrix.experimental }} && (echo "::set-output name=fail::true"; exit 1)
-        continue-on-error: ${{ matrix.experimental }}
 
   nightly-warning:
     name: Change status of test check
     runs-on: ubuntu-latest
     needs: test
+    if: needs.test.outputs.fail
 
     steps:
       - name: Create failure warning
-        if: needs.test.outputs.fail
         uses: actions/github-script@v3
         with:
           script: |
