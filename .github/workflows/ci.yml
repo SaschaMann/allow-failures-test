@@ -22,6 +22,7 @@ jobs:
         run: exit 0
 
       - name: Check that fails during experimental builds
+        continue-on-error: ${{ matrix.version == 'nightly' }}
         if: matrix.version == 'nightly'
         id: test
         run: |
