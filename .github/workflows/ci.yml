@@ -45,13 +45,17 @@ jobs:
               run_id: context.runId,
             })).data.check_suite_id
 
-            const checkRuns = (await github.checks.listForSuite({
+            github.checks.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              check_suite_id: checkSuiteId,
-            })).check_runs
-            
-            for (run of checkRuns) {
-              console.log(run.name)
-            }
+              name: 'nightly-failures',
+              head_sha: context.sha,
+              status: 'completed',
+              conclusion: 'neutral',
+              output: {
+                title: 'CI',
+                summary: 'Build failures on nightly',
+                text: 'There were build failures when using nightly Julia.'
+              }
+            })
 
