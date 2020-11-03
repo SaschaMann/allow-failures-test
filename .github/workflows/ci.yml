@@ -22,8 +22,11 @@ jobs:
         run: exit 0
 
       - name: Check that fails during experimental builds
+        if: matrix.experimental
         id: test
-        run: ${{ matrix.experimental }} && (echo "::set-output name=fail::true"; exit 1)
+        run: |
+          echo "::set-output name=fail::true"
+          exit 1
 
   nightly-warning:
     name: Change status of test check
