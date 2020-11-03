@@ -47,7 +47,7 @@ jobs:
 
             console.log(checkSuiteId)
 
-            const checkSuite = await github.getSuite({
+            const checkSuite = await github.checks.getSuite({
               owner: context.repo.owner,
               repo: context.repo.repo,
               check_suite_id: checkSuiteId,
