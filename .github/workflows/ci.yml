@@ -18,11 +18,11 @@ jobs:
 
     steps:
       - name: Check that passes
-        run: exit(0)
+        run: exit 0
 
       - name: Check that fails during experimental builds
         id: test
-        run: ${{ matrix.experimental }} && (echo "::set-output name=fail::true"; exit(1))
+        run: ${{ matrix.experimental }} && (echo "::set-output name=fail::true"; exit 1)
         continue-on-error: ${{ matrix.experimental }}
 
   nightly-warning:
