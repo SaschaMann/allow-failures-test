@@ -38,6 +38,7 @@ jobs:
       - name: Create failure warning
         uses: actions/github-script@v3
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const check_suite_id = octokit.actions.getWorkflowRun({
               owner: context.repo.owner,
